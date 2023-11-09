@@ -47,11 +47,12 @@ class MDCTransaction private constructor(private var snapshot: Map<String, MdcVa
 		private fun mdcNow(mdc: Map<String, String?>, key: String) =
 			if (mdc.containsKey(key)) MdcValue.some(mdc[key]) else MdcValue.none
 
-		fun put(key: String, newValue: String?) = Builder().put(key, newValue)
-		fun put(key: String, newValue: String?, defaultValue: String) = Builder().put(key, newValue, defaultValue)
-		fun putIfNotNull(key: String, newValue: String?) = Builder().putIfNotNull(key, newValue)
-		fun remove(key: String) = Builder().remove(key)
-		fun clear() = Builder().clear()
+		fun builder() = Builder()
+		fun put(key: String, newValue: String?) = builder().put(key, newValue)
+		fun put(key: String, newValue: String?, defaultValue: String) = builder().put(key, newValue, defaultValue)
+		fun putIfNotNull(key: String, newValue: String?) = builder().putIfNotNull(key, newValue)
+		fun remove(key: String) = builder().remove(key)
+		fun clear() = builder().clear()
 	}
 
 	/**
