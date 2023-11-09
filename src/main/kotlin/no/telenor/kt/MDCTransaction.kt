@@ -33,7 +33,7 @@ import org.slf4j.MDC
  */
 class MDCTransaction private constructor(private var snapshot: Map<String, MdcValueDiff>?) {
 	companion object {
-		private val log: Logger = LoggerFactory.getLogger(MDCTransaction::class.java);
+		private val log: Logger = LoggerFactory.getLogger(MDCTransaction::class.java)
 		private val mdcCopy: Map<String, String?>
 			get() {
 				var mdc: Map<String, String?>? = MDC.getCopyOfContextMap()
@@ -154,7 +154,7 @@ class MDCTransaction private constructor(private var snapshot: Map<String, MdcVa
 
 	internal data class MdcValue(val exists: Boolean, val value: String?) {
 		companion object {
-			fun some(value: String?) = MdcValue(true, value);
+			fun some(value: String?) = MdcValue(true, value)
 			val none = MdcValue(false, null)
 		}
 	}
