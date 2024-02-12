@@ -31,7 +31,9 @@ import org.slf4j.MDC
  * assertEquals("quux", MDC.get("qux"))
  * ```
  */
-class MDCTransaction private constructor(private var snapshot: Map<String, MdcValueDiff>?) {
+class MDCTransaction private constructor(
+	private var snapshot: Map<String, MdcValueDiff>?
+) : AutoCloseable {
 	companion object {
 		private val log: Logger = LoggerFactory.getLogger(MDCTransaction::class.java)
 		private val mdcCopy: Map<String, String?>
@@ -104,6 +106,8 @@ class MDCTransaction private constructor(private var snapshot: Map<String, MdcVa
 			else MDC.remove(key)
 		}
 	}
+
+	override fun close() = restore()
 
 	class Builder internal constructor(internal var changes: MutableMap<String, MdcValue>? = mutableMapOf()) {
 		private fun assertNotCommitted() = changes ?: throw RuntimeException("Cannot modify committed MDCSnapshot.Builder!")
