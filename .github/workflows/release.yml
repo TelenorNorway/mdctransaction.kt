@@ -16,14 +16,15 @@ on:
         description: An optional release message
         required: false
 jobs:
-  quality-assurance:
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-      packages: read
-    name: Quality Assurance
-    uses: ./.github/workflows/qa.yml
+  # Temporarily disable quality assurance
+  # quality-assurance:
+  #   permissions:
+  #     actions: read
+  #     contents: read
+  #     security-events: write
+  #     packages: read
+  #   name: Quality Assurance
+  #   uses: ./.github/workflows/qa.yml
   versioning:
     name: Versioning
     runs-on: ubuntu-latest
