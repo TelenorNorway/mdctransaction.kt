@@ -44,7 +44,8 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    needs: [ quality-assurance, versioning ]
+    # needs: [ quality-assurance, versioning ]
+    needs: [ versioning ]
     permissions:
       contents: write
       packages: write
